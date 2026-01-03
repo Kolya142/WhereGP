@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <link type="text/css" rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <h4 id=n1>*1. Before you can encrypt message you shall add contact <a href='#n2'>*2</a></h4>
+    <h4 id=n2>*2. To add contact you shall get human's key <a href='#n3'>*3</a> and paste it to textbox "key/message", next name human in textbox "contact's name" and press "Add my contact"</h4>
+    <h4 id=n3>*3. To get your public key you shall press "Get my key" and copy it from textbox "output"</h4>
+    <h4 id=n4>*4. Please read legal things</h4>
+    <hr>
+    <textarea id="contq" placeholder="contact's name"></textarea>
+    <textarea id="inp" placeholder="key/message"></textarea>
+    <hr>
+    <input type="button" value="Encrypt" onclick="en();" class='button' id="_en"/><br>
+    <input type="button" value="Decrypt" onclick="de();" class='button' id="_de"/><br>
+    <input type="button" value="Get my key" onclick="gtk();" class='button' id="_gtk"/><br>
+    <input type="button" value="Add my contact" onclick="adb();" class='button' id="_adb"/><br>
+    <input type="button" value="Regenerate my key" onclick="confirm('Regenerate my key?') && gk();" class='button' id="_gk"/><br>
+    <input type="button" value="Clear input fields" onclick="cif();" class='button' id="_cif"/><br>
+    <hr>
+    <textarea id="out" placeholder="output" readonly></textarea><br>
+    <input type="button" value="Copy whole output" onclick="cwo();" class='button' id="_cwo"/><br>
+    <hr>
+    <h1>Your contacts:</h1>
+    <div id="contacts_list"></div>
+    <input type="button" value="Do not restrict real names" onclick="rrn();" class='button' id="_rrn"/>
+    <hr>
+    <h2>Expert things:</h2>  
+    <input type="button" value="Change encryption key" onclick="cek();" class='button' id="_cek"/><text style="color: red;">(WARNING: it reads the 'key/message' text box)</text><br>
+    <input type="button" value="Get secret key" onclick="gsek();" class='button' id="_gsek"/><text style="color: red;">(WARNING: DO NOT TELL YOUR SECRET KEY TO ANY BODY EVEN ME)</text><br>
+    <hr>
+    <h2>Legal things that no body reads but i must put them there:</h2>
+    <input type="button" value="Show legal information" onclick="tlt();" class='button' id="_tlt"/>
+    <div id="legal_things" hidden>
+      <h4>This page by it's self doesn't transfer any data via network but this page does store some OpenPGP keys in your browser's local storage. </h4>
+      <h4><a href="./LICENSE">LICENSE</a>.. You can host this page as long as you save VISIBLE TO THE USER links to author, original localization and the OpenPGP.js authors.</h4>
+      <h4>OpenPGP.js encryption library is located here: <a href="https://github.com/openpgpjs/openpgpjs">https://github.com/openpgpjs/openpgpjs</a>.</h4>
+      <h4>The source code is located here: <a href="https://github.com/Kolya142/WhereGP">https://github.com/Kolya142/WhereGP</a>.</h4>
+      <h4>The original localization is located here: <a href="https://kolya142.github.io/wheregp/index.html">https://kolya142.github.io/wheregp/index.html</a>.</h4>
+    </div>
+    <script src="openpgp.min.js"></script>
+    <script>
+      localization = {
+          "this_inf_for_key": "These questions are needed to identify your key.\nYou can enter your nickname instead of real full name.", // I got a lot of questions about this from people from real life.
+          "enter_fn": "Enter your full name. (eg. John Smith)",
+          "enter_em": "Enter your email. (eg. john.smith@natmail.eu)",
+          "enter_em_inv": "Invalid Email.\nEnter your email. (eg. john.smith@natmail.eu)",
+          "no_contacts": "You doesn't have them :(",
+          "is_not_ur_cn": " is not my contact",
+          "welcome_cn": "Welcome, ",
+          "do_u_want_rn_cn": "Do you want to rename contact: ",
+          "do_u_want_rm_cn": "Do you want to delete contact: ",
+          "ent_new_cn_nm": "Enter new name for contact: ",
+          "del_cn_js": "[Delete]", // js stands for just.
+          "rn_cn_js": "[Rename]",
+          "ch_key_cnfm": "Do you REALLY want to change your key?\nType \"yes_iam_expert\" if yes.",
+          "gt_key_cnfm": "Do you REALLY want to get your secret key?\nType \"yes_iam_expert\" if yes.",
+          "exp_tpe": "yes_iam_expert",
+          "ch_key_priv_cnfm": "yes_i_wanna_private",
+          "ch_key_pub_cnfm": "yes_i_wanna_public",
+          "ch_key": "Type \"yes_i_wanna_private\" if you want to change private key\nType \"yes_i_wanna_public\" if you want to change public key",
+          "sh_legal_th": "Show legal information",
+          "hd_legal_th": "Hide legal information",
+          "inv_cn_id": "Contact's name/Email invalid",
+          "rs_rl_nms": "Restrict real names",
+          "d_rs_rl_nms": "Do not Restrict real names",
+          "rstd": "Restricted",
+      };
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

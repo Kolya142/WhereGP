@@ -1,0 +1,31 @@
+html {
+	background-color: #D8C8A7; /* There is no more my favorite color :( */
+}
+@media (max-width: 600px) {
+    * {
+        font-size: 12px; /* At least on my iPhone it looks cool. */
+    }
+}
+@media (min-width: 600px) and (max-width: 900px) {
+    * {
+        font-size: 10px;
+    }
+}
+.button {
+	transition: 0.1s;
+	padding: 3px;
+	background-color: yellow;
+    scale: 1.0;
+}
+.button:active {
+	transition: 0.1s;
+	scale: 1.1;
+}
+textarea {
+	padding: 0px;
+	width: 300px;
+	height: 100px;
+}
+#out {
+	width: 100%;
+}
