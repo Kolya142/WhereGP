@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <link type="text/css" rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhereGP (RU) [ТЫ-edition]</title>
+    <!-- Russian language has two separated "you" words "ты"(friend to friend) and "вы"(serious human to serious human). This joke localization uses "ты" instead of "вы" -->
+  </head>
+  <body>
+    <h4 id=n1>*1. Перед тем, как зашифровать сообщение вам необходимо добавить контакт <a href='#n2'>*2</a></h4>
+    <h4 id=n2>*2. Чтобы добавить контакт, тебе необходимо узнать ключ человека <a href='#n3'>*3</a> и вставить в поле "ключ/сообщение", потом написать имя человека в поле "имя контакта" и нажать "Добавить контакт"</h4>
+    <h4 id=n3>*3. Чтобы получить твой публичный ключ, тебе необходимо нажать "Получить мой ключ" и скопировать его из поля "результат"</h4>
+    <h4 id=n4>*4. Пожалуста прочитай правовые штуки</h4>
+    <hr>
+    <textarea id="contq" placeholder="имя контакта"></textarea>
+    <textarea id="inp" placeholder="ключ/сообщение"></textarea>
+    <hr>
+    <input type="button" value="Зашифровать" onclick="en();" class='button' id="_en"/><br>
+    <input type="button" value="Расшифровать" onclick="de();" class='button' id="_de"/><br>
+    <input type="button" value="Получить мой ключ" onclick="gtk();" class='button' id="_gtk"/><br>
+    <input type="button" value="Добавить контакт" onclick="adb();" class='button' id="_adb"/><br>
+    <input type="button" value="Переделать мой ключ" onclick="gk();" class='button' id="_gk"/><br>
+    <input type="button" value="Очистить поля ввода" onclick="cif();" class='button' id="_cif"/><br>
+    <textarea id="out" placeholder="результат" readonly></textarea><br>
+    <input type="button" value="Скопировать весь результат" onclick="cwo();" class='button' id="_cwo"/><br>
+    <hr>
+    <h1>Твои контакты:</h1>
+    <div id="contacts_list"></div>
+    <input type="button" value="Не скрывать реальные имена" onclick="rrn();" class='button' id="_rrn"/>
+    <hr>
+    <h2>Штуки для экпертов:</h2>
+    <input type="button" value="Поменять ключ шифрования" onclick="cek();" class='button' id="_cek"/><text style="color: red;">(ОСТОРОЖНО: оно использует поле ввода 'ключ/сообщение')</text><br>
+    <input type="button" value="Получить секретный ключ" onclick="gsek();" class='button' id="_gsek"/><text style="color: red;">(ОСТОРОЖНО: НИКОМУ НЕ СООБЩАЙ СВОЙ СЕКРЕТНЫЙ КЛЮЧ, ДАЖЕ МНЕ)</text><br>
+    <hr>
+    <h2>Правовые штуки, которые никто не читает, но я обязан их оставить здесь:</h2>
+    <input type="button" value="Показать правовую информацию" onclick="tlt();" class='button' id="_tlt"/>
+    <div id="legal_things" hidden>
+      <h4>Эта страница в своей основе не отправляет никакие данные по сети, но эта страница хранит некоорые OpenPGP ключи в локальном хранилище вашего браузера. </h4>
+      <h4><a href="./LICENSE">ЛИЦЕНЗИЯ(Англ.)</a>. Вы можете размещать эту страницу пока вы сохраняете ВИДИМЫЕ ДЛЯ ПОЛЬЗОВАТЕЛЯ ссылки на автора, оригинальную локализацию и авторов OpenPGP.js.</h4>
+      <h4>библеотека шифрования OpenPGP.js находится здесь: <a href="https://github.com/openpgpjs/openpgpjs">https://github.com/openpgpjs/openpgpjs</a>.</h4>
+      <h4>Исходный код находится здесь: <a href="https://github.com/Kolya142/WhereGP">https://github.com/Kolya142/WhereGP</a>.</h4>
+      <h4>Оригинальная локализация находится здесь: <a href="https://kolya142.github.io/wheregp/index.html">https://kolya142.github.io/wheregp/index.html</a>.</h4>
+      <h4>Локализацию делал Kolya142(Николай Шевелько)</h4>
+    </div>
+    <script src="openpgp.min.js"></script>
+    <script>
+      localization = {
+          "this_inf_for_key": "Данные вопросы нужны для идентификации твоего ключа.\nТы можешь ввести свой никнейм вместо реального полного имени.",
+          "enter_fn": "Введи твое полное имя. (к примеру, Иван Иванов)",
+          "enter_em": "Введи твое адрес электронной почты. (к примеру, ivan.ivanov@ivanovs.ru)",
+          "enter_em_inv": "Неверный Email.\nВведите твой адрес электронной почты. (к примеру, ivan.ivanov@ivanovs.ru)",
+          "no_contacts": "У тебя их нет :(",
+          "is_not_ur_cn": " это не твой контакт",
+          "welcome_cn": "Добро пожаловать, ",
+          "do_u_want_rn_cn": "Ты реально хочешь переименовать контакт: ",
+          "do_u_want_rm_cn": "Ты реально хочешь удалить контакт: ",
+          "ent_new_cn_nm": "Введи новое имя для контакта: ",
+          "del_cn_js": "[Удалить]",
+          "rn_cn_js": "[Переименовать]",
+          "ch_key_cnfm": "Ты РЕАЛЬНО хочешь изменить свой ключ?\nНапиши \"да_я_инженер\" если да.",
+          "gt_key_cnfm": "Ты РЕАЛЬНО хочешь получить свой секретный ключ?\nНапиши \"да_я_инженер\" если да.",
+          "exp_tpe": "да_я_инженер",
+          "ch_key_priv_cnfm": "да_я_хочу_приватн",
+          "ch_key_pub_cnfm": "да_я_хочу_пуб",
+          "ch_key": "Напиши \"да_я_хочу_приватн\" если ты хочешь поменять приватный ключ\nНапиши \"да_я_хочу_пуб\" если ты хочешь поменять публичный ключ",
+          "sh_legal_th": "Показать правовую информацию",
+          "hd_legal_th": "Скрыть правовую информацию",
+          "inv_cn_id": "Имя/Email контакта неправильны",
+          "rs_rl_nms": "Скрывать реальные имена",
+          "d_rs_rl_nms": "Не скрывать реальные имена",
+          "rstd": "Скрыто",
+      };
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
