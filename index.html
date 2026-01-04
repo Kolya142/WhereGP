@@ -4,11 +4,12 @@
     <meta charset="utf-8"/>
     <link type="text/css" rel="stylesheet" href="./style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhereGP</title>
   </head>
   <body>
     <h4 id=n1>*1. Before you can encrypt message you shall add contact <a href='#n2'>*2</a></h4>
-    <h4 id=n2>*2. To add contact you shall get human's key <a href='#n3'>*3</a> and paste it to textbox "key/message", next name human in textbox "contact's name" and press "Add my contact"</h4>
-    <h4 id=n3>*3. To get your public key you shall press "Get my key" and copy it from textbox "output"</h4>
+    <h4 id=n2>*2. To add contact you shall get human's key <a href='#n3'>*3</a> and paste it to textbox "key/message", next enter human name in textbox "contact's name" and press "Add my contact"</h4>
+    <h4 id=n3>*3. To get your public key you shall press "Get my key" and copy key from textbox "output"</h4>
     <h4 id=n4>*4. Please read legal things</h4>
     <hr>
     <textarea id="contq" placeholder="contact's name"></textarea>
@@ -30,9 +31,9 @@
     <hr>
     <h2>Expert things:</h2>  
     <input type="button" value="Change encryption key" onclick="cek();" class='button' id="_cek"/><text style="color: red;">(WARNING: it reads the 'key/message' text box)</text><br>
-    <input type="button" value="Get secret key" onclick="gsek();" class='button' id="_gsek"/><text style="color: red;">(WARNING: DO NOT TELL YOUR SECRET KEY TO ANY BODY EVEN ME)</text><br>
+    <input type="button" value="Get secret key" onclick="gsek();" class='button' id="_gsek"/><text style="color: red;">(WARNING: DO NOT TELL YOUR SECRET KEY TO ANY BODY, EVEN ME)</text><br>
     <hr>
-    <h2>Legal things that no body reads but i must put them there:</h2>
+    <h2>Legal things that no body reads, but i must put them there:</h2>
     <input type="button" value="Show legal information" onclick="tlt();" class='button' id="_tlt"/>
     <div id="legal_things" hidden>
       <h4>This page by it's self doesn't transfer any data via network but this page does store some OpenPGP keys in your browser's local storage. </h4>
