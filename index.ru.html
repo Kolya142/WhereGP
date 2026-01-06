@@ -11,6 +11,7 @@
     <h4 id=n2>*2. Чтобы добавить контакт, вам необходимо узнать ключ человека <a href='#n3'>*3</a> и вставить в поле "ключ/сообщение", потом напишите имя человека в поле "имя контакта" и нажать "Добавить контакт"</h4>
     <h4 id=n3>*3. Чтобы получить ваш публичный ключ, вам необходимо нажать "Получить мой ключ" и скопировать его из поля "результат"</h4>
     <h4 id=n4>*4. Пожалуста прочитайте правовые штуки</h4>
+    <h4>Я не делаю свой собственный сервер для WhereGP, потому-что это лишняя централизация и слишком не прямоленейно.</h4>
     <hr>
     <textarea id="contq" placeholder="имя контакта"></textarea>
     <textarea id="inp" placeholder="ключ/сообщение"></textarea>
@@ -19,7 +20,7 @@
     <input type="button" value="Расшифровать" onclick="de();" class='button' id="_de"/><br>
     <input type="button" value="Получить мой ключ" onclick="gtk();" class='button' id="_gtk"/><br>
     <input type="button" value="Добавить контакт" onclick="adb();" class='button' id="_adb"/><br>
-    <input type="button" value="Переделать мой ключ" onclick="gk();" class='button' id="_gk"/><br>
+    <input type="button" value="Переделать мой ключ" onclick="confirm('Точно переделать мой ключ??') && gk();" class='button' id="_gk"/><br>
     <input type="button" value="Очистить поля ввода" onclick="cif();" class='button' id="_cif"/><br>
     <textarea id="out" placeholder="результат" readonly></textarea><br>
     <input type="button" value="Скопировать весь результат" onclick="cwo();" class='button' id="_cwo"/><br>

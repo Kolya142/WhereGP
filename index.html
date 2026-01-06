@@ -11,6 +11,7 @@
     <h4 id=n2>*2. To add contact you shall get human's key <a href='#n3'>*3</a> and paste it to textbox "key/message", next enter human name in textbox "contact's name" and press "Add my contact"</h4>
     <h4 id=n3>*3. To get your public key you shall press "Get my key" and copy key from textbox "output"</h4>
     <h4 id=n4>*4. Please read legal things</h4>
+    <h4>I do not make own server for WhereGP, because it's unnecessary centralization and too undirectly.</h4>
     <hr>
     <textarea id="contq" placeholder="contact's name"></textarea>
     <textarea id="inp" placeholder="key/message"></textarea>
@@ -19,7 +20,7 @@
     <input type="button" value="Decrypt" onclick="de();" class='button' id="_de"/><br>
     <input type="button" value="Get my key" onclick="gtk();" class='button' id="_gtk"/><br>
     <input type="button" value="Add my contact" onclick="adb();" class='button' id="_adb"/><br>
-    <input type="button" value="Regenerate my key" onclick="confirm('Regenerate my key?') && gk();" class='button' id="_gk"/><br>
+    <input type="button" value="Regenerate my key" onclick="confirm('Regenerate my key??') && gk();" class='button' id="_gk"/><br>
     <input type="button" value="Clear input fields" onclick="cif();" class='button' id="_cif"/><br>
     <hr>
     <textarea id="out" placeholder="output" readonly></textarea><br>
@@ -45,7 +46,7 @@
     <script src="openpgp.min.js"></script>
     <script>
       localization = {
-          "this_inf_for_key": "These questions are needed to identify your key.\nYou can enter your nickname instead of real full name.", // I got a lot of questions about this from people from real life.
+          "this_inf_for_key": "These questions are needed to identify your key.\nYou can enter your nickname instead of real full name.", // I got a lot of questions about this from people in real life.
           "enter_fn": "Enter your full name. (eg. John Smith)",
           "enter_em": "Enter your email. (eg. john.smith@natmail.eu)",
           "enter_em_inv": "Invalid Email.\nEnter your email. (eg. john.smith@natmail.eu)",
