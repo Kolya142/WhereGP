@@ -13,9 +13,11 @@
     <h4 id=n4>*4. Please read legal things</h4>
     <h4>I do not make own server for WhereGP, because it's unnecessary centralization and too undirectly.</h4>
     <hr>
-    <textarea id="contq" placeholder="contact's name"></textarea>
+    <input id="contq" placeholder="contact's name"></input>
+    <br>
     <textarea id="inp" placeholder="key/message"></textarea>
     <hr>
+    <input type="button" value="Log in" onclick="login();" class='button' id="_lg"/><br>
     <input type="button" value="Encrypt" onclick="en();" class='button' id="_en"/><br>
     <input type="button" value="Decrypt" onclick="de();" class='button' id="_de"/><br>
     <input type="button" value="Get my key" onclick="gtk();" class='button' id="_gtk"/><br>
@@ -25,6 +27,7 @@
     <hr>
     <textarea id="out" placeholder="output" readonly></textarea><br>
     <input type="button" value="Copy whole output" onclick="cwo();" class='button' id="_cwo"/><br>
+    <input type="button" value="Destroy all data" onclick="dad();" class='button' id="_dad"/><br>
     <hr>
     <h1>Your contacts:</h1>
     <div id="contacts_list"></div>
@@ -34,24 +37,33 @@
     <input type="button" value="Change encryption key" onclick="cek();" class='button' id="_cek"/><text style="color: red;">(WARNING: it reads the 'key/message' text box)</text><br>
     <input type="button" value="Get secret key" onclick="gsek();" class='button' id="_gsek"/><text style="color: red;">(WARNING: DO NOT TELL YOUR SECRET KEY TO ANY BODY, EVEN ME)</text><br>
     <hr>
+    <h2>Awesome links:</h2>
+    <h4>OpenPGP.js encryption library is located here: <a href="https://github.com/openpgpjs/openpgpjs">https://github.com/openpgpjs/openpgpjs</a>.</h4>
+    <h4>The source code is located here: <a href="https://github.com/Kolya142/WhereGP">https://github.com/Kolya142/WhereGP</a>.</h4>
+    <h4>Issues can be reported here: <a href="https://github.com/Kolya142/WhereGP/issues">https://github.com/Kolya142/WhereGP/issues</a>.</h4>
+    <h4>The original localization is located here: <a href="https://kolya142.github.io/wheregp/index.html">https://kolya142.github.io/wheregp/index.html</a>.</h4>
+    <hr>
     <h2>Legal things that no body reads, but i must put them there:</h2>
     <input type="button" value="Show legal information" onclick="tlt();" class='button' id="_tlt"/>
     <div id="legal_things" hidden>
-      <h4>This page by it's self doesn't transfer any data via network but this page does store some OpenPGP keys in your browser's local storage. </h4>
-      <h4><a href="./LICENSE">LICENSE</a>.. You can host this page as long as you save VISIBLE TO THE USER links to author, original localization and the OpenPGP.js authors.</h4>
-      <h4>OpenPGP.js encryption library is located here: <a href="https://github.com/openpgpjs/openpgpjs">https://github.com/openpgpjs/openpgpjs</a>.</h4>
-      <h4>The source code is located here: <a href="https://github.com/Kolya142/WhereGP">https://github.com/Kolya142/WhereGP</a>.</h4>
-      <h4>The original localization is located here: <a href="https://kolya142.github.io/wheregp/index.html">https://kolya142.github.io/wheregp/index.html</a>.</h4>
+      <h4>This page by its self doesn't transfer any data via network but this page does store some OpenPGP keys in your browser's local storage. </h4>
+      <h4>Product's name "WhereGP" is not a registred trade mark.</h4>
+      <h4><a href="./LICENSE">LICENSE</a>.. You can host this page as long as you follow the MIT license and save VISIBLE TO THE USER links to author WhereGP and the OpenPGP.js authors.</h4>
     </div>
     <script src="openpgp.min.js"></script>
     <script>
       localization = {
           "this_inf_for_key": "These questions are needed to identify your key.\nYou can enter your nickname instead of real full name.", // I got a lot of questions about this from people in real life.
+          "uralg": "You're already logged in.",
+          "undlg": "You're need to be logged in first.\nDo you want to log in?",
+          "umsc": "You need to specify contact name first.",
+          "cki": "You need to specify valid contact's key before adding itself.",
           "enter_fn": "Enter your full name. (eg. John Smith)",
           "enter_em": "Enter your email. (eg. john.smith@natmail.eu)",
           "enter_em_inv": "Invalid Email.\nEnter your email. (eg. john.smith@natmail.eu)",
           "no_contacts": "You doesn't have them :(",
-          "is_not_ur_cn": " is not my contact",
+          "dst_al_dt": "Do you REALLY want to destroy all your data?",
+          "is_not_ur_cn": "You need to add contact first: ",
           "welcome_cn": "Welcome, ",
           "do_u_want_rn_cn": "Do you want to rename contact: ",
           "do_u_want_rm_cn": "Do you want to delete contact: ",

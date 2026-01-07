@@ -13,9 +13,11 @@
     <h4 id=n4>*4. Пожалуста прочитайте правовые штуки</h4>
     <h4>Я не делаю свой собственный сервер для WhereGP, потому-что это лишняя централизация и слишком не прямоленейно.</h4>
     <hr>
-    <textarea id="contq" placeholder="имя контакта"></textarea>
+    <input id="contq" placeholder="имя контакта"></input>
+    <br>
     <textarea id="inp" placeholder="ключ/сообщение"></textarea>
     <hr>
+    <input type="button" value="Войти" onclick="login();" class='button' id="_lg"/><br>
     <input type="button" value="Зашифровать" onclick="en();" class='button' id="_en"/><br>
     <input type="button" value="Расшифровать" onclick="de();" class='button' id="_de"/><br>
     <input type="button" value="Получить мой ключ" onclick="gtk();" class='button' id="_gtk"/><br>
@@ -24,6 +26,7 @@
     <input type="button" value="Очистить поля ввода" onclick="cif();" class='button' id="_cif"/><br>
     <textarea id="out" placeholder="результат" readonly></textarea><br>
     <input type="button" value="Скопировать весь результат" onclick="cwo();" class='button' id="_cwo"/><br>
+    <input type="button" value="Уничтожить все данные" onclick="dad();" class='button' id="_dad"/><br>
     <hr>
     <h1>Ваши контакты:</h1>
     <div id="contacts_list"></div>
@@ -33,25 +36,34 @@
     <input type="button" value="Поменять ключ шифрования" onclick="cek();" class='button' id="_cek"/><text style="color: red;">(ОСТОРОЖНО: оно использует поле ввода 'ключ/сообщение')</text><br>
     <input type="button" value="Получить секретный ключ" onclick="gsek();" class='button' id="_gsek"/><text style="color: red;">(ОСТОРОЖНО: НИКОМУ НЕ СООБЩАЙТЕ СВОЙ СЕКРЕТНЫЙ КЛЮЧ, ДАЖЕ МНЕ)</text><br>
     <hr>
+    <h2>Крутые ссылки:</h2>
+    <h4>библеотека шифрования OpenPGP.js находится здесь: <a href="https://github.com/openpgpjs/openpgpjs">https://github.com/openpgpjs/openpgpjs</a>.</h4>
+    <h4>Исходный код находится здесь: <a href="https://github.com/Kolya142/WhereGP">https://github.com/Kolya142/WhereGP</a>.</h4>
+    <h4>О проблемах можете писать сюда: <a href="https://github.com/Kolya142/WhereGP/issues">https://github.com/Kolya142/WhereGP/issues</a>.</h4>
+    <h4>Оригинальная локализация находится здесь: <a href="https://kolya142.github.io/wheregp/index.html">https://kolya142.github.io/wheregp/index.html</a>.</h4>
+    <hr>
     <h2>Правовые штуки, которые никто не читает, но я обязан их оставить здесь:</h2>
     <input type="button" value="Показать правовую информацию" onclick="tlt();" class='button' id="_tlt"/>
     <div id="legal_things" hidden>
       <h4>Эта страница в своей основе не отправляет никакие данные по сети, но эта страница хранит некоорые OpenPGP ключи в локальном хранилище вашего браузера. </h4>
-      <h4><a href="./LICENSE">ЛИЦЕНЗИЯ(Англ.)</a>. Вы можете размещать эту страницу пока вы сохраняете ВИДИМЫЕ ДЛЯ ПОЛЬЗОВАТЕЛЯ ссылки на автора, оригинальную локализацию и авторов OpenPGP.js.</h4>
-      <h4>библеотека шифрования OpenPGP.js находится здесь: <a href="https://github.com/openpgpjs/openpgpjs">https://github.com/openpgpjs/openpgpjs</a>.</h4>
-      <h4>Исходный код находится здесь: <a href="https://github.com/Kolya142/WhereGP">https://github.com/Kolya142/WhereGP</a>.</h4>
-      <h4>Оригинальная локализация находится здесь: <a href="https://kolya142.github.io/wheregp/index.html">https://kolya142.github.io/wheregp/index.html</a>.</h4>
+      <h4>Название продукта "ВэарГП"("WhereGP") не является зарегистрированной торговой маркой. </h4>
+      <h4><a href="./LICENSE">ЛИЦЕНЗИЯ(Англ.)</a>.. Вы можете размещать эту страницу пока вы придерживаетесь лицензию МИТ(MIT) и сохраняете ВИДИМЫЕ ДЛЯ ПОЛЬЗОВАТЕЛЯ ссылки на автора ВэарГП и авторов OpenPGP.js.</h4>
       <h4>Локализацию делал Kolya142(Николай Шевелько)</h4>
     </div>
     <script src="openpgp.min.js"></script>
     <script>
       localization = {
           "this_inf_for_key": "Данные вопросы нужны для идентификации вашего ключа.\nВы можете ввести ваш никнейм вместо реального полного имени.",
+          "uralg": "Вы уже зашли.",
+          "undlg": "Вы должны зайти сначала.\nВы хотите войти?",
+          "umsc": "Вы должны ввести имя контакта сначала.",
+          "cki": "Вы должны ввести правильный ключ контакта перед добавлением его.",
           "enter_fn": "Введите ваше полное имя. (к примеру, Иван Иванов)",
           "enter_em": "Введите ваш адрес электронной почты. (к примеру, ivan.ivanov@ivanovs.ru)",
           "enter_em_inv": "Неверный Email.\nВведите ваш адрес электронной почты. (к примеру, ivan.ivanov@ivanovs.ru)",
+          "dst_al_dt": "Вы РЕАЛЬНО хотите уничтожить все данные?",
           "no_contacts": "У вас их нет :(",
-          "is_not_ur_cn": " это не ваш контакт",
+          "is_not_ur_cn": "Вы должны добавить контакт сначала: ",
           "welcome_cn": "Добро пожаловать, ",
           "do_u_want_rn_cn": "Вы реально хотите переименовать контакт: ",
           "do_u_want_rm_cn": "Вы реально хотите удалить контакт: ",
